@@ -6,7 +6,7 @@
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 10:30:01 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/07/25 10:51:58 by hgrissen         ###   ########.fr       */
+/*   Updated: 2021/08/29 16:11:26 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,14 @@ int		ft_atoi(const char *str)
 		result = result * 10 + (str[i++] - '0');
 	}
 	return ((int)(result * sign));
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
 }

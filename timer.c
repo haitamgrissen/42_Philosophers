@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   timer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/25 14:07:19 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/08/30 16:02:02 by hgrissen         ###   ########.fr       */
+/*   Created: 2021/08/30 10:58:19 by hgrissen          #+#    #+#             */
+/*   Updated: 2021/08/30 17:20:00 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib_philo.h"
+# include "lib_philo.h"
 
-void    display(char *msg, t_philo *philo)
+void    timer(int t)
 {
-	uint64_t time;
-	time = 0;
-	
-	//printf("%d is created\n", philo->id);
-	//printf("AAAAAAA\n");
-	pthread_mutex_lock(&(philo->sim->print));
+       t = 0;
+}
 
-	printf("%llu philosopher %d %s\n", time, philo->id, msg);
-	//if (!ft_strcmp(msg, "died"))
-	pthread_mutex_unlock(&(philo->sim->print));
+uint64_t	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
