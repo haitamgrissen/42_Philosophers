@@ -6,47 +6,37 @@
 /*   By: hgrissen <hgrissen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/25 10:12:27 by hgrissen          #+#    #+#             */
-/*   Updated: 2021/08/30 16:52:38 by hgrissen         ###   ########.fr       */
+/*   Updated: 2021/09/03 15:21:08 by hgrissen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "lib_philo.h"
 
-/*
-void	supervisor(t_args *args)
+
+void	socrates(t_sim *sim)
 {
-	args->n_of_meals =0; ///to silence unused error 
-}
-
-
-
-*/
-void		create_threads(t_sim	*sim)
-{
-	int			i;
-	pthread_t	tmp[sim->args->n_of_philos];
-	
-	i = 0;
-	while (i < sim->args->n_of_philos)
+	int	i;
+	while (1)
 	{
-		pthread_create(tmp + i, NULL, &routine, &sim->philos[i]);
-		i += 2;
+		i =0;
+		while(i < sim->args->n_of_philos)
+		{
+			uint64_t x = get_time() - sim->philos[i].lastmeal;
+			uint64_t y = (uint64_t)sim->args->t_to_die;
+			if(x >= y)
+			{
+				printf("[%llu, %llu %llu]\n", x, y, x - y);
+				display("died", &sim->philos[i]);
+				//printf("hello");
+				//printf("the death of socrates");
+				//pthread_mutex_lock(&sim->print);
+				
+			}
+			i++;
+		}
 	}
-	usleep(100);
-	i = 1;
-	while (i < sim->args->n_of_philos)
-	{
-		pthread_create(tmp + i, NULL, &routine, &sim->philos[i]);
-		i += 2;
-	}
-//
-
+	//args->n_of_meals =0; ///to silence unused error 
 }
-
-
-
-
-
 
 int     main(int argc, char **argv)
 {
@@ -59,10 +49,10 @@ int     main(int argc, char **argv)
 
 	create_threads(sim);
 	//start supervisor
+	socrates(sim);
 	
-	while(1);
-	
-	
+	//while(1);
+
 	// print args 
 
 /*	int i = 0;

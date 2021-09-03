@@ -6,8 +6,8 @@ SRC =	main.c \
 		src/routines \
 		src/utils \
 		src/inits.c
-
-CC = gcc -Wall -fsanitize=thread -Wextra -Werror -I inc
+#-fsanitize=thread
+CC = gcc -Wall -Wextra -Werror -I inc
 
 all :  $(NAME) 
 
