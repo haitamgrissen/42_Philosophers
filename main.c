@@ -12,6 +12,14 @@
 
 # include "lib_philo.h"
 
+void	deathofsocrates(t_sim *sim)
+{
+	//free forks
+	//free philos
+	//free args
+	sim->ate = sim->ate;
+	exit(0);
+}
 
 void	socrates(t_sim *sim)
 {
@@ -25,17 +33,15 @@ void	socrates(t_sim *sim)
 			uint64_t y = (uint64_t)sim->args->t_to_die;
 			if(x >= y)
 			{
-				printf("[%llu, %llu %llu]\n", x, y, x - y);
 				display("died", &sim->philos[i]);
-				//printf("hello");
-				//printf("the death of socrates");
-				//pthread_mutex_lock(&sim->print);
-				
 			}
+			if (sim->ate >= sim->args->n_of_meals && sim->args->n_of_meals != 0)
+			{
+				deathofsocrates(sim);
+			}	
 			i++;
 		}
 	}
-	//args->n_of_meals =0; ///to silence unused error 
 }
 
 int     main(int argc, char **argv)

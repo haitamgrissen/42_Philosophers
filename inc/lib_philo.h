@@ -10,25 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
- #ifndef LIB_PHILO_H
- # define LIB_PHILO_H
+#ifndef LIB_PHILO_H
+# define LIB_PHILO_H
 
 # include <pthread.h>
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
-#include <unistd.h>
+# include <unistd.h>
 # include <sys/time.h>
 
+typedef struct s_sim	t_sim;
+typedef struct s_philo	t_philo;
+typedef struct s_args	t_args;
 
-
-
-typedef struct 			s_sim 	t_sim;
-typedef struct 			s_philo	t_philo;
-typedef struct			s_args	t_args;
-
-
-struct 					s_args
+struct					s_args
 {
 	int		n_of_philos;
 	int		t_to_die;
@@ -36,12 +32,9 @@ struct 					s_args
 	int		t_to_slp;
 	int		n_of_meals;
 	t_philo	*philos;
-	
 };
 
-
-
-struct 					s_philo
+struct					s_philo
 {
 	int					id;
 	int					leftfork;
@@ -52,9 +45,10 @@ struct 					s_philo
 	t_args				*args;
 	t_sim				*sim;
 	int					eat_lock;
+	int					shba3;
 };
 
-struct 					s_sim
+struct					s_sim
 {
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		*print_mutex;
@@ -62,11 +56,11 @@ struct 					s_sim
 	t_philo				*philos;
 	t_args				*args;
 	uint64_t			timestart;
+	int					ate;
 };
 
-void					print_error();
+void					print_error(void);
 t_args					*parse(int argc, char	**argv);
-
 
 /*
 	libft funcs
@@ -80,7 +74,8 @@ int						ft_strcmp(char *s1, char *s2);
 /*
 	inits
 */
-t_sim					*init_sim(int    argc, char **argv);
+
+t_sim					*init_sim(int argc, char **argv);
 pthread_mutex_t			*initforks(t_sim	*sim);
 t_philo					*init_philos(t_sim	*sim);
 void					create_threads(t_sim	*sim);
@@ -104,5 +99,6 @@ void					timer(int t);
 void					display(char *msg, t_philo *philo);
 
 void					socrates(t_sim *sim);
+void					deathofsocrates(t_sim *sim);
 
- #endif
+#endif

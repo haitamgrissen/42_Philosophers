@@ -38,14 +38,12 @@ void    p_eat(t_philo *philo)
     timer(philo->args->t_to_eat * 1000);
     philo->lastmeal = get_time();
     //usleep(1000);
-    philo->eat_lock = 1;
     philo->meals++;
+    if ((philo->meals >= philo->args->n_of_meals))
+        philo->sim->ate++;
     pthread_mutex_unlock(&philo->iseating);
     pthread_mutex_unlock(&philo->sim->forks[philo->leftfork]);
     pthread_mutex_unlock(&philo->sim->forks[philo->rightfork]);
-
-    ///
-    philo->eat_lock = 0;
 }
 
 void    p_sleep(t_philo *philo)

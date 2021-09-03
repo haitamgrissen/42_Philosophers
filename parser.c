@@ -56,6 +56,8 @@ t_args		*parse(int argc, char	**argv)
 	args->t_to_slp = ft_atoi(argv[4]);
 	if (argc == 6)
 		args->n_of_meals = ft_atoi(argv[5]);
+	else
+		args->n_of_meals = 0;
 	check_negative(argc, args);
 	return (args);
 }

@@ -22,6 +22,7 @@ t_sim				*init_sim(int argc, char **argv)
     sim->args = parse(argc, argv);
 	sim->philos = init_philos(sim);
 	sim->forks = initforks(sim);
+	sim->ate = 0;
     pthread_mutex_init(&(sim->print), NULL);
 	return (sim);
 }

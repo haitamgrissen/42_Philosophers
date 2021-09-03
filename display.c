@@ -15,14 +15,11 @@
 void    display(char *msg, t_philo *philo)
 {
 	uint64_t time;
-	time = get_time();// - (uint64_t)philo->sim->timestart;
-	//time %= 10000;
+
+	time = get_time() - (uint64_t)philo->sim->timestart;
 	pthread_mutex_lock(&(philo->sim->print));
 	printf("%llu philosopher %d %s\n", time, philo->id, msg);
 	if (!ft_strcmp(msg, "died"))
-	{
-		//usleep(500);
-		exit(0);
-	}
+		deathofsocrates(philo->sim);
 	pthread_mutex_unlock(&(philo->sim->print));
 }
