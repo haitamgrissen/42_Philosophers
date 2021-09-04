@@ -12,9 +12,9 @@
 
 #include "lib_philo.h"
 
-void    display(char *msg, t_philo *philo)
+void	display(char *msg, t_philo *philo)
 {
-	uint64_t time;
+	uint64_t	time;
 
 	time = get_time() - (uint64_t)philo->sim->timestart;
 	pthread_mutex_lock(&(philo->sim->print));

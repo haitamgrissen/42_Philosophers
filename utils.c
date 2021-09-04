@@ -41,17 +41,17 @@ int	isdigits(const char *str)
 	return (1);
 }
 
-int		ft_isspace(int c)
+int	ft_isspace(int c)
 {
-	return (c == '\t' ||
-			c == '\n' ||
-			c == '\v' ||
-			c == '\f' ||
-			c == '\r' ||
-			c == ' ');
+	return (c == '\t'
+		|| c == '\n'
+		|| c == '\v'
+		|| c == '\f'
+		|| c == '\r'
+		|| c == ' ');
 }
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	long			result;
 	long			border;
@@ -63,7 +63,10 @@ int		ft_atoi(const char *str)
 	i = 0;
 	while (ft_isspace(str[i]))
 		i++;
-	sign = (str[i] == '-') ? -1 : 1;
+	if ((str[i] == '-'))
+		sign = -1;
+	else
+		sign = 1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (isdigit(str[i]))
@@ -79,7 +82,7 @@ int		ft_atoi(const char *str)
 
 int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')

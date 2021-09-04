@@ -12,40 +12,43 @@
 
 #include "lib_philo.h"
 
-t_sim				*init_sim(int argc, char **argv)
+t_sim	*init_sim(int argc, char **argv)
 {
-    t_sim		*sim;
-    
-    if (!(sim = (t_sim *)malloc((sizeof(t_sim)))))
-		exit(0);
+	t_sim	*sim;
 
-    sim->args = parse(argc, argv);
+	sim = (t_sim *)malloc(sizeof(t_sim));
+	if (!sim)
+		exit(0);
+	sim->args = parse(argc, argv);
 	sim->philos = init_philos(sim);
 	sim->forks = initforks(sim);
 	sim->ate = 0;
-    pthread_mutex_init(&(sim->print), NULL);
+	pthread_mutex_init(&(sim->print), NULL);
 	return (sim);
 }
 
-pthread_mutex_t		*initforks(t_sim	*sim)
+pthread_mutex_t	*initforks(t_sim	*sim)
 {
 	pthread_mutex_t	*forks;
 	int				i;
 
-	if (!(forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * sim->args->n_of_philos)))
+	forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* sim->args->n_of_philos);
+	if (!forks)
 		return (NULL);
 	i = 0;
-	while(i < sim->args->n_of_philos)
+	while (i < sim->args->n_of_philos)
 		pthread_mutex_init(&(forks[i++]), NULL);
-	return forks;
+	return (forks);
 }
 
-t_philo				*init_philos(t_sim	*sim)
+t_philo	*init_philos(t_sim *sim)
 {
 	int			i;
 	t_philo		*philos;
 
-	if (!(philos = (t_philo *)malloc(sizeof(t_philo) * sim->args->n_of_philos)))
+	philos = (t_philo *)malloc(sizeof(t_philo) * sim->args->n_of_philos);
+	if (!philos)
 		return (NULL);
 	i = 0;
 	while (i < sim->args->n_of_philos)
@@ -63,12 +66,12 @@ t_philo				*init_philos(t_sim	*sim)
 	return (philos);
 }
 
-void				create_threads(t_sim	*sim)
+void	create_threads(t_sim	*sim)
 {
 	int			i;
-	pthread_t	tmp[sim->args->n_of_philos];
-	
-	
+	pthread_t	*tmp;
+
+	tmp = (pthread_t *)malloc(sizeof(pthread_t) * sim->args->n_of_philos);
 	i = 0;
 	sim->timestart = get_time();
 	while (i < sim->args->n_of_philos)
@@ -83,4 +86,5 @@ void				create_threads(t_sim	*sim)
 		pthread_create(tmp + i, NULL, &routine, &sim->philos[i]);
 		i += 2;
 	}
+	free(tmp);
 }

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "lib_philo.h"
+#include "lib_philo.h"
 
-void    timer(int t)
+void	timer(int t)
 {
 	uint64_t	start;
 	uint64_t	time_diff;
