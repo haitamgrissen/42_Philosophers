@@ -45,13 +45,11 @@ struct					s_philo
 	t_args				*args;
 	t_sim				*sim;
 	int					eat_lock;
-	int					shba3;
 };
 
 struct					s_sim
 {
 	pthread_mutex_t		*forks;
-	pthread_mutex_t		*print_mutex;
 	pthread_mutex_t		print;
 	t_philo				*philos;
 	t_args				*args;

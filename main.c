@@ -14,7 +14,9 @@
 
 void	deathofsocrates(t_sim *sim)
 {
-	sim->ate = sim->ate;
+	free(sim->philos);
+	free(sim->args);
+	free(sim->forks);
 	exit(0);
 }
 
