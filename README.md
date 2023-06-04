@@ -1,2 +1,3 @@
-# 42_Philosophers
-quick introduction to multithreading
+# Philosophers
+the dining philosophers
+multithreading introduction
